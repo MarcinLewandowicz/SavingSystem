@@ -28,14 +28,12 @@ namespace ML.SavingSystem
         public void Load(GameData gameData)
         {
             if (gameData.GetValue(dataType.Integer, nameof(playerHealthPoints)) != null)
-            {
-                playerHealthPoints = (int)gameData.GetValue(dataType.Integer, nameof(playerHealthPoints));
-            }
+            playerHealthPoints = (int)gameData.GetValue(dataType.Integer, nameof(playerHealthPoints));
+            
 
             if (gameData.GetValue(dataType.Float, nameof(playerMovevmentSpeed)) != null)
-            {
-                playerMovevmentSpeed = (float)gameData.GetValue(dataType.Float, nameof(playerMovevmentSpeed));
-            }
+            playerMovevmentSpeed = (float)gameData.GetValue(dataType.Float, nameof(playerMovevmentSpeed));
+            
 
             if (gameData.GetValue(dataType.Float, nameof(playerPosition)+"x") != null)
             {

@@ -15,9 +15,7 @@ namespace ML.SavingSystem
         {
             this.Clear();
             for (int i = 0; i < keys.Count; i++)
-            {
-                this.Add(keys[i], values[i]);
-            }
+            this.Add(keys[i], values[i]);            
         }
 
         public void OnBeforeSerialize()

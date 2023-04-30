@@ -23,13 +23,9 @@ namespace ML.SavingSystem
         private void Awake()
         {
             if (instance == null)
-            {
-                instance = this;
-            }
+            instance = this;            
             else
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);            
         }
 
         private void Start()
@@ -51,9 +47,7 @@ namespace ML.SavingSystem
             {
                 Debug.Log("Game data available - loading state from file");
                 foreach (ISavable savable in savableOjbects)
-                {
-                    savable.Load(gameData);
-                }
+                savable.Load(gameData);                
             }
         }
 
@@ -77,29 +71,22 @@ namespace ML.SavingSystem
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))
-            {
-                SaveDataToFile();
-            }
+            SaveDataToFile();
+            
             if (Input.GetKeyDown(KeyCode.L))
-            {
-                LoadDataFromFile();
-            }
+            LoadDataFromFile();            
         }
 
         private void LoadDataFromFile()
         {
             foreach (ISavable savable in savableOjbects)
-            {
-                savable.Load(gameData);
-            }
+            savable.Load(gameData);            
         }
 
         private void SaveDataToFile()
         {
             foreach (ISavable savable in savableOjbects)
-            {
-                savable.Save(gameData);
-            }
+            savable.Save(gameData);            
 
             fileHandler.SaveGameData(gameData, useEncryption);
         }

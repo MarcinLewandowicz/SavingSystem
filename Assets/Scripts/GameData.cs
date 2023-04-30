@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ML.SavingSystem
@@ -8,55 +9,28 @@ namespace ML.SavingSystem
     public class GameData
     {
         public bool cleanGameData = true;
-        public SerializableDictionary<string, int> gameDataIntegers;
-        public SerializableDictionary<string, float> gameDataFloats;
-        public SerializableDictionary<string, string> gameDataStrings;
-        public SerializableDictionary<string, bool> gameDataBooleans;
+        public SerializableDictionary<string, int> GameDataIntegers;
+        public SerializableDictionary<string, float> GameDataFloats;
+        public SerializableDictionary<string, string> GameDataStrings;
+        public SerializableDictionary<string, bool> GameDataBooleans;
 
         public object GetValue(dataType dataType, string key)
-        {
+        {            
             switch (dataType)
             {
                 case dataType.Integer:
-                    if (gameDataIntegers.ContainsKey(key))
-                    {
-                        return gameDataIntegers[key];
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return GameDataIntegers.TryGetValue(key, out int intValue) ? intValue : null;
                 case dataType.Boolean:
-                    if (gameDataBooleans.ContainsKey(key))
-                    {
-                        return gameDataBooleans[key];
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return GameDataBooleans.TryGetValue(key, out bool boolValue) ? boolValue : null;
                 case dataType.Float:
-                    if (gameDataFloats.ContainsKey(key))
-                    {
-                        return gameDataFloats[key];
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return GameDataFloats.TryGetValue(key, out float floatValue) ? floatValue : null;
                 case dataType.String:
-                    if (gameDataStrings.ContainsKey(key))
-                    {
-                        return gameDataStrings[key];
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return GameDataStrings.TryGetValue(key, out string stringValue) ? stringValue : null;
                 default:
                     return null;
             }
         }
+
 
         public void AddGameData(string key, object value, dataType dataType)
         {
@@ -65,16 +39,16 @@ namespace ML.SavingSystem
                 switch (dataType)
                 {
                     case dataType.Integer:
-                        gameDataIntegers[key] = (int)value;
+                        GameDataIntegers[key] = (int)value;
                         break;
                     case dataType.Boolean:
-                        gameDataBooleans[key] = (bool)value;
+                        GameDataBooleans[key] = (bool)value;
                         break;
                     case dataType.Float:
-                        gameDataFloats[key] = (float)value;
+                        GameDataFloats[key] = (float)value;
                         break;
                     case dataType.String:
-                        gameDataStrings[key] = (string)value;
+                        GameDataStrings[key] = (string)value;
                         break;
                 }
             }
@@ -83,16 +57,16 @@ namespace ML.SavingSystem
                 switch (dataType)
                 {
                     case dataType.Integer:
-                        gameDataIntegers.Add(key, (int)value);
+                        GameDataIntegers.Add(key, (int)value);
                         break;
                     case dataType.Boolean:
-                        gameDataBooleans.Add(key, (bool)value);
+                        GameDataBooleans.Add(key, (bool)value);
                         break;
                     case dataType.Float:
-                        gameDataFloats.Add(key, (float)value);
+                        GameDataFloats.Add(key, (float)value);
                         break;
                     case dataType.String:
-                        gameDataStrings.Add(key, (string)value);
+                        GameDataStrings.Add(key, (string)value);
                         break;
                 }
             }
@@ -100,10 +74,10 @@ namespace ML.SavingSystem
 
         private bool KeyAlreadyExist(string key)
         {
-            return (gameDataBooleans.ContainsKey(key) ||
-                    gameDataFloats.ContainsKey(key) ||
-                    gameDataIntegers.ContainsKey(key) ||
-                    gameDataStrings.ContainsKey(key));
+            return (GameDataBooleans.ContainsKey(key) ||
+                    GameDataFloats.ContainsKey(key) ||
+                    GameDataIntegers.ContainsKey(key) ||
+                    GameDataStrings.ContainsKey(key));
         }
     }
 

@@ -331,21 +331,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileType: 0
-  fileName: TestFile
+  fileName: NewTestFile
   useEncryption: 1
   useCloudSaveLoadSystem: 1
   gameData:
     cleanGameData: 1
-    gameDataIntegers:
+    GameDataIntegers:
       keys: []
       values: 
-    gameDataFloats:
+    GameDataFloats:
       keys: []
       values: []
-    gameDataStrings:
+    GameDataStrings:
       keys: []
       values: []
-    gameDataBooleans:
+    GameDataBooleans:
       keys: []
       values: 
 --- !u!4 &2007333793
