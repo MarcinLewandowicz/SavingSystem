@@ -25,16 +25,16 @@ namespace ML.SavingSystem
             GameData loadedData = new GameData();
 
             if (useCloudSaveLoadSystem)
-            cloudSave.LoadFileFromCloud(fileName, fullFilePath);
+                cloudSave.LoadFileFromCloud(fileName, fullFilePath);
             
             if (File.Exists(fullFilePath))
             {
                 string dataToLoad = "";
                 using (FileStream stream = new FileStream(fullFilePath, FileMode.Open))
-                dataToLoad = ReadData(stream);
+                    dataToLoad = ReadData(stream);
                 
                 if (useEncryption)
-                dataToLoad = EncryptDecrypt(dataToLoad);
+                    dataToLoad = EncryptDecrypt(dataToLoad);
                 
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
@@ -46,7 +46,7 @@ namespace ML.SavingSystem
         {
             string dataToLoad;
             using (StreamReader reader = new StreamReader(stream))
-            dataToLoad = reader.ReadToEnd();
+                dataToLoad = reader.ReadToEnd();
             
             return dataToLoad;
         }
@@ -59,22 +59,22 @@ namespace ML.SavingSystem
             string dataToSave = JsonUtility.ToJson(data, true);
 
             if (useEncryption)
-            dataToSave = EncryptDecrypt(dataToSave);
+                dataToSave = EncryptDecrypt(dataToSave);
             
 
             using (FileStream stream = new FileStream(fileFullPath, FileMode.Create))
-            WriteData(dataToSave, stream);
+                WriteData(dataToSave, stream);
             
             Debug.Log("Data saved to file.");
 
             if (useCloudSaveLoadSystem)
-            cloudSave.SaveFileToCloud(fileName, fileFullPath);            
+                cloudSave.SaveFileToCloud(fileName, fileFullPath);            
         }
 
         private void WriteData(string dataToSave, FileStream stream)
         {
             using StreamWriter writer = new StreamWriter(stream);
-            writer.Write(dataToSave);
+                writer.Write(dataToSave);
         }
 
         private string EncryptDecrypt(string data)
@@ -82,7 +82,7 @@ namespace ML.SavingSystem
             string modifiedData = "";
 
             for (int i = 0; i < data.Length; i++)
-            modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);            
+                modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);            
 
             return modifiedData;
         }

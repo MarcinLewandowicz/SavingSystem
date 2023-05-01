@@ -20,15 +20,15 @@ namespace ML.SavingSystem
         public void Load(GameData gameData)
         {
             if (gameData.GetValue(dataType.Boolean, nameof(weaponUnlocked)) != null)
-            weaponUnlocked = (bool)gameData.GetValue(dataType.Boolean, nameof(weaponUnlocked));
+                weaponUnlocked = (bool)gameData.GetValue(dataType.Boolean, nameof(weaponUnlocked));
             
 
             if (gameData.GetValue(dataType.String, nameof(weaponName)) != null)
-            weaponName = (string)gameData.GetValue(dataType.String, nameof(weaponName));
+                weaponName = (string)gameData.GetValue(dataType.String, nameof(weaponName));
             
 
             if (gameData.GetValue(dataType.Integer, nameof(weaponSerialNumber)) != null)
-            weaponSerialNumber = (int)gameData.GetValue(dataType.Integer, nameof(weaponSerialNumber));
+                weaponSerialNumber = (int)gameData.GetValue(dataType.Integer, nameof(weaponSerialNumber));
             
 
         }
